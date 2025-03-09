@@ -1,0 +1,69 @@
+{
+    "zh": {
+        "noun": {
+            "水": {
+                "translation": "Aqua",
+                "gender": "n",
+                "plural": "书籍"
+            },
+            "书": {
+                "translation": "Livre",
+                "gender": "m",
+                "plural": "Livres"
+            },
+            "桌子": {
+                "translation": "Mes",
+                "gender": "f",
+                "plural": "Mess"
+            }
+        },
+        "adj": {
+            "大": "",
+            "美丽": ""
+        },
+        "adv": {
+            "快速地": "",
+            "慢慢地": ""
+        },
+        "v": {
+            "吃": "",
+            "跑": ""
+        }
+    },
+    "created": {
+        "noun": {
+            "Aqua": {
+                "translation": "水",
+                "gender": "n",
+                "plural": "Aquas"
+            },
+            "kima": {
+                "translation": "",
+                "gender": "",
+                "plural": ""
+            },
+            "taza": {
+                "translation": "",
+                "gender": "",
+                "plural": ""
+            },
+            "lima": {
+                "translation": "",
+                "gender": "",
+                "plural": ""
+            }
+        },
+        "adj": {
+            "zuri": "",
+            "kima": ""
+        },
+        "adv": {
+            "taza": "",
+            "lima": ""
+        },
+        "v": {
+            "taza": "",
+            "lima": ""
+        }
+    }
+}

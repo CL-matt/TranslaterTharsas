@@ -1,0 +1,586 @@
+{
+    "zh": {
+        "noun": {
+            "水": {
+                "translation": "Aqua",
+                "gender": "n",
+                "plural": ""
+            },
+            "书": {
+                "translation": "Livre",
+                "gender": "m",
+                "plural": "Livres"
+            },
+            "桌子": {
+                "translation": "Mes",
+                "gender": "f",
+                "plural": "Mess"
+            }
+        },
+        "pronoun": {
+            "我": {
+                "translation": "Jo"
+            },
+            "你": {
+                "translation": "Tu"
+            },
+            "他": {
+                "translation": "Er"
+            },
+            "她": {
+                "translation": "Sie"
+            },
+            "它": {
+                "translation": "Es"
+            },
+            "我们": {
+                "translation": "Nou"
+            },
+            "你们": {
+                "translation": "Vou"
+            },
+            "他们": {
+                "translation": "Iou"
+            }
+        },
+        "possessive": {
+            "我的": {
+                "translation": "Mein"
+            },
+            "你的": {
+                "translation": "Deud"
+            },
+            "他的": {
+                "translation": "Erk"
+            },
+            "她的": {
+                "translation": "Erka"
+            },
+            "它的": {
+                "translation": "Erke"
+            },
+            "我们的": {
+                "translation": "Nous"
+            },
+            "你们的": {
+                "translation": "Vous"
+            },
+            "他们的": {
+                "translation": "Ious"
+            }
+        },
+        "objective": {
+            "我": {
+                "translation": "Me"
+            },
+            "你": {
+                "translation": "Te"
+            },
+            "他": {
+                "translation": "Le"
+            },
+            "她": {
+                "translation": "La"
+            },
+            "它": {
+                "translation": "Lo"
+            },
+            "我们": {
+                "translation": "Noi"
+            },
+            "你们": {
+                "translation": "Voi"
+            },
+            "他们": {
+                "translation": "IL"
+            }
+        },
+        "numeral": {
+            "1": {
+                "translation": "Une"
+            },
+            "2": {
+                "translation": "Due"
+            },
+            "3": {
+                "translation": "Tre"
+            },
+            "4": {
+                "translation": "Quattro"
+            },
+            "5": {
+                "translation": "Cinque"
+            },
+            "6": {
+                "translation": "Sei"
+            },
+            "7": {
+                "translation": "Sette"
+            },
+            "8": {
+                "translation": "Ocho"
+            },
+            "9": {
+                "translation": "Nove"
+            },
+            "10": {
+                "translation": "Dieci"
+            },
+            "11": {
+                "translation": "Once"
+            },
+            "12": {
+                "translation": "Doce"
+            },
+            "13": {
+                "translation": "Trece"
+            },
+            "14": {
+                "translation": "Quatorce"
+            },
+            "15": {
+                "translation": "Cince"
+            },
+            "16": {
+                "translation": "Diesei"
+            },
+            "17": {
+                "translation": "Diesette"
+            },
+            "18": {
+                "translation": "Dieocho"
+            },
+            "19": {
+                "translation": "Dienove"
+            },
+            "20": {
+                "translation": "Venti"
+            },
+            "21": {
+                "translation": "Ventiune"
+            },
+            "22": {
+                "translation": "Ventidue"
+            },
+            "23": {
+                "translation": "Ventitre"
+            },
+            "24": {
+                "translation": "Ventiquat"
+            },
+            "25": {
+                "translation": "Venticinc"
+            },
+            "26": {
+                "translation": "Ventisei"
+            },
+            "27": {
+                "translation": "Ventiset"
+            },
+            "28": {
+                "translation": "Ventioc"
+            },
+            "29": {
+                "translation": "Ventinove"
+            },
+            "30": {
+                "translation": "Trenti"
+            },
+            "31": {
+                "translation": "Trentiune"
+            },
+            "32": {
+                "translation": "Trentidue"
+            },
+            "33": {
+                "translation": "Trentitre"
+            },
+            "34": {
+                "translation": "Trentiquat"
+            },
+            "35": {
+                "translation": "Trenticinc"
+            },
+            "36": {
+                "translation": "Trentisei"
+            },
+            "37": {
+                "translation": "Trentiset"
+            },
+            "38": {
+                "translation": "Trentioc"
+            },
+            "39": {
+                "translation": "Trentinove"
+            },
+            "40": {
+                "translation": "Quanti"
+            },
+            "41": {
+                "translation": "Quantiune"
+            },
+            "42": {
+                "translation": "Quantidue"
+            },
+            "43": {
+                "translation": "Quantitre"
+            },
+            "44": {
+                "translation": "Quantiquat"
+            },
+            "45": {
+                "translation": "Quanticinc"
+            },
+            "46": {
+                "translation": "Quantisei"
+            },
+            "47": {
+                "translation": "Quantiset"
+            },
+            "48": {
+                "translation": "Quantioc"
+            },
+            "49": {
+                "translation": "Quantinove"
+            },
+            "50": {
+                "translation": "Cinti"
+            },
+            "51": {
+                "translation": "Cintiune"
+            },
+            "52": {
+                "translation": "Cintidue"
+            },
+            "53": {
+                "translation": "Cintitre"
+            },
+            "54": {
+                "translation": "Cintiquat"
+            },
+            "55": {
+                "translation": "Cinticinc"
+            },
+            "56": {
+                "translation": "Cintisei"
+            },
+            "57": {
+                "translation": "Cintiset"
+            },
+            "58": {
+                "translation": "Cintioc"
+            },
+            "59": {
+                "translation": "Cintinove"
+            },
+            "60": {
+                "translation": "Seinti"
+            },
+            "61": {
+                "translation": "Seintiune"
+            },
+            "62": {
+                "translation": "Seintidue"
+            },
+            "63": {
+                "translation": "Seintitre"
+            },
+            "64": {
+                "translation": "Seintiquat"
+            },
+            "65": {
+                "translation": "Seinticinc"
+            },
+            "66": {
+                "translation": "Seintisei"
+            },
+            "67": {
+                "translation": "Seintiset"
+            },
+            "68": {
+                "translation": "Seintioc"
+            },
+            "69": {
+                "translation": "Seintinove"
+            },
+            "70": {
+                "translation": "Setenti"
+            },
+            "71": {
+                "translation": "Setentiune"
+            },
+            "72": {
+                "translation": "Setentidue"
+            },
+            "73": {
+                "translation": "Setentitre"
+            },
+            "74": {
+                "translation": "Setentiquat"
+            },
+            "75": {
+                "translation": "Setenticinc"
+            },
+            "76": {
+                "translation": "Setentisei"
+            },
+            "77": {
+                "translation": "Setentiset"
+            },
+            "78": {
+                "translation": "Setentioc"
+            },
+            "79": {
+                "translation": "Setentinove"
+            },
+            "80": {
+                "translation": "Ochenti"
+            },
+            "81": {
+                "translation": "Ochentiune"
+            },
+            "82": {
+                "translation": "Ochentidue"
+            },
+            "83": {
+                "translation": "Ochentitre"
+            },
+            "84": {
+                "translation": "Ochentiquat"
+            },
+            "85": {
+                "translation": "Ochenticinc"
+            },
+            "86": {
+                "translation": "Ochentisei"
+            },
+            "87": {
+                "translation": "Ochentiset"
+            },
+            "88": {
+                "translation": "Ochentioc"
+            },
+            "89": {
+                "translation": "Ochentinove"
+            },
+            "90": {
+                "translation": "Noventi"
+            },
+            "91": {
+                "translation": "Noventiune"
+            },
+            "92": {
+                "translation": "Noventidue"
+            },
+            "93": {
+                "translation": "Noventitre"
+            },
+            "94": {
+                "translation": "Noventiquat"
+            },
+            "95": {
+                "translation": "Noventicinc"
+            },
+            "96": {
+                "translation": "Noventisei"
+            },
+            "97": {
+                "translation": "Noventiset"
+            },
+            "98": {
+                "translation": "Noventioc"
+            },
+            "99": {
+                "translation": "Noventinove"
+            },
+            "100": {
+                "translation": "Cehn"
+            },
+            "1000": {
+                "translation": "Mil"
+            },
+            "10000": {
+                "translation": "Wang"
+            }
+        }
+    },
+    "created": {
+        "noun": {
+            "Aqua": {
+                "translation": "水",
+                "gender": "n",
+                "plural": "Aquas"
+            }
+        },
+        "pronoun": {
+            "Jo": {
+                "translation": "我"
+            },
+            "Tu": {
+                "translation": "你"
+            },
+            "Er": {
+                "translation": "他"
+            },
+            "Sie": {
+                "translation": "她"
+            },
+            "Es": {
+                "translation": "它"
+            },
+            "Nou": {
+                "translation": "我们"
+            },
+            "Vou": {
+                "translation": "你们"
+            },
+            "Iou": {
+                "translation": "他们/她们/它们"
+            }
+        },
+        "possessive": {
+            "Mein": {
+                "translation": "我的"
+            },
+            "Deud": {
+                "translation": "你的"
+            },
+            "Erk": {
+                "translation": "他的"
+            },
+            "Erka": {
+                "translation": "她的"
+            },
+            "Erke": {
+                "translation": "它的"
+            },
+            "Nous": {
+                "translation": "我们的"
+            },
+            "Vous": {
+                "translation": "你们的"
+            },
+            "Ious": {
+                "translation": "他们的"
+            }
+        },
+        "objective": {
+            "Me": {
+                "translation": "我"
+            },
+            "Te": {
+                "translation": "你"
+            },
+            "Le": {
+                "translation": "他"
+            },
+            "La": {
+                "translation": "她"
+            },
+            "Lo": {
+                "translation": "它"
+            },
+            "Noi": {
+                "translation": "我们"
+            },
+            "Voi": {
+                "translation": "你们"
+            },
+            "IL": {
+                "translation": "他们/她们/它们"
+            }
+        },
+        "numeral": {
+            "Une": {
+                "translation": "1"
+            },
+            "Due": {
+                "translation": "2"
+            },
+            "Tre": {
+                "translation": "3"
+            },
+            "Quattro": {
+                "translation": "4"
+            },
+            "Cinque": {
+                "translation": "5"
+            },
+            "Sei": {
+                "translation": "6"
+            },
+            "Sette": {
+                "translation": "7"
+            },
+            "Ocho": {
+                "translation": "8"
+            },
+            "Nove": {
+                "translation": "9"
+            },
+            "Dieci": {
+                "translation": "10"
+            },
+            "Once": {
+                "translation": "11"
+            },
+            "Doce": {
+                "translation": "12"
+            },
+            "Trece": {
+                "translation": "13"
+            },
+            "Quatorce": {
+                "translation": "14"
+            },
+            "Cince": {
+                "translation": "15"
+            },
+            "Diesei": {
+                "translation": "16"
+            },
+            "Diesette": {
+                "translation": "17"
+            },
+            "Dieocho": {
+                "translation": "18"
+            },
+            "Dienove": {
+                "translation": "19"
+            },
+            "Venti": {
+                "translation": "20"
+            },
+            "Trenti": {
+                "translation": "30"
+            },
+            "Quanti": {
+                "translation": "40"
+            },
+            "Cinti": {
+                "translation": "50"
+            },
+            "Seinti": {
+                "translation": "60"
+            },
+            "Setenti": {
+                "translation": "70"
+            },
+            "Ochenti": {
+                "translation": "80"
+            },
+            "Noventi": {
+                "translation": "90"
+            },
+            "Cehn": {
+                "translation": "100"
+            },
+            "Mil": {
+                "translation": "1000"
+            },
+            "Wang": {
+                "translation": "10000"
+            }
+        }
+    }
+}
