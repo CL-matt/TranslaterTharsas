@@ -8,6 +8,7 @@
 import json
 import os
 from datetime import datetime
+import shutil
 
 # 获取当前脚本（My_Dict.py）所在目录
 current_dir_dic = os.path.dirname(os.path.abspath(__file__))
@@ -130,3 +131,4 @@ def restore_backup():
 
 # **初始化：启动时加载 JSON**
 load_dict()
+#backup_dict()
