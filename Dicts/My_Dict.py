@@ -72,6 +72,7 @@ def backup_dict():
         backup_filename = f"E:\\OneDrive - UPV\\Thalassar\\Colangs\\Dicts\\My_Dict_backup_{timestamp}.json"
         shutil.copy(DICT_FILE, backup_filename)
         print(f"✅ 备份已创建: {backup_filename}")
+    clean_old_backups()
 
 # 删除多余备份,最多保留五个
 def clean_old_backups(max_files=5):
@@ -118,6 +119,29 @@ def delete_word(lang, word):
                 return True
     return False  # 如果找不到单词，返回 False
 
+# 自动同步函数：确保 zh 和 created 中的单词在对方字典中存在
+def sync_words():
+    # 同步 zh 到 created
+    load_dict()
+    for category in languages_dict.get("zh", {}):
+        for word in list(languages_dict["zh"][category].keys()):  # 使用 list() 创建副本以避免迭代时修改字典
+            translation = languages_dict["zh"][category][word].get("translation", "")
+            if translation and translation not in languages_dict.get("created", {}).get(category, {}):
+                add_word("created", category, translation, word, 
+                         languages_dict["zh"][category][word].get("gender"), 
+                         languages_dict["zh"][category][word].get("plural"))
+    
+    # 同步 created 到 zh
+    for category in languages_dict.get("created", {}):
+        for word in list(languages_dict["created"][category].keys()):  # 使用 list() 创建副本以避免迭代时修改字典
+            translation = languages_dict["created"][category][word].get("translation", "")
+            if translation and translation not in languages_dict.get("zh", {}).get(category, {}):
+                add_word("zh", category, translation, word, 
+                         languages_dict["created"][category][word].get("gender"), 
+                         languages_dict["created"][category][word].get("plural"))
+    save_dict()
+    backup_dict()
+
 # 恢复
 def restore_backup():
     """恢复备份，将 My_Dict_backup.json 复制回 My_Dict.json"""
@@ -131,4 +155,4 @@ def restore_backup():
 
 # **初始化：启动时加载 JSON**
 load_dict()
-#backup_dict()
+#sync_words()
