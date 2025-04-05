@@ -1,57 +1,48 @@
-<<<<<<< Updated upstream
-import sys
-import os
+"""
+用于阿弥诺斯语的翻译器
+"""
 
-# 获取当前脚本所在的目录
-current_dir = os.path.dirname(os.path.abspath(__file__))
+__author__ = "温茶"
+__copyright__ = "Copyright (C) 2025, ranrylios"
+__license__ = None
+__version__ = "Alpha 1.2"
+__email__ = "@gmail.com"
 
-# 添加其他文件夹到 sys.path
-project_dir = os.path.abspath(os.path.join(current_dir,"pinyin"))
-project_dir_1 = os.path.abspath(os.path.join(current_dir,"installer"))
-sys.path.append(project_dir)
-sys.path.append(project_dir_1)
-# 现在可以导入项目中的其他模块
-import pypinyin
-import tkinter as tk
-from tkinter import messagebox
+"""别点开
+核心依赖模块
 
-def reverse_pinyin_translation(chinese_text):
-    # 获取拼音（带声调符号）
-    pinyin_list = pypinyin.pinyin(chinese_text, style=pypinyin.Style.TONE)
-    
-    # 将拼音列表转换为字符串
-    pinyin_str = ''.join([item[0] for item in pinyin_list])
-    
-    # 反转拼音字符串
-    reversed_pinyin = pinyin_str[::-1]
-    
-    return reversed_pinyin
+包含程序运行所需的所有第三方库和标准库导入
 
-def translate_text():
-    chinese_input = entry.get()
-    if not chinese_input:
-        messagebox.showwarning("输入错误", "请输入中文文本！")
-        return
-    translated_output = reverse_pinyin_translation(chinese_input)
-    result_label.config(text=f"翻译结果: {translated_output}")
+各导入模块功能说明：
+1. GUI开发相关：
+   - tkinter: Python标准GUI库，用于创建窗口应用程序
+   - ttk: 提供主题化控件（增强版UI组件）
+   - messagebox: 显示消息对话框
+   - scrolledtext: 带滚动条的文本区域
+   - filedialog: 文件选择对话框
 
-# 创建 GUI 界面
-root = tk.Tk()
-root.title("阿弥诺斯语翻译器")
-root.geometry("500x300")
+2. 核心功能库：
+   - pypinyin: 汉字转拼音核心库
+     - pinyin: 汉字转拼音函数
+     - Style: 拼音风格枚举（声调/数字/无调）
 
-tk.Label(root, text="请输入中文:").pack(pady=5)
-entry = tk.Entry(root, width=30)
-entry.pack(pady=5)
+3. 系统交互：
+   - pyperclip: 剪贴板读写操作
+   - json: 历史记录数据序列化/反序列化
+   - os: 文件系统路径操作
 
-translate_button = tk.Button(root, text="翻译", command=translate_text)
-translate_button.pack(pady=5)
+4. 多线程处理：
+   - threading.Thread: 实现文件处理后台线程，防止界面冻结
 
-result_label = tk.Label(root, text="翻译结果:")
-result_label.pack(pady=10)
+5. 文件处理：
+   - pdfplumber: PDF文件内容提取
 
-root.mainloop()
-=======
+6. 字符处理：
+   - unicodedata: Unicode字符规范化处理
+
+7. 时间处理：
+   - datetime: 记录翻译操作时间戳
+"""
 
 import tkinter as tk
 from tkinter import ttk, messagebox, scrolledtext, filedialog
@@ -75,14 +66,15 @@ COLOR_SCHEME = {
 }
 
 # 全局配置
-HISTORY_FILE = "translation_history.json"
+HISTORY_DIR = "./output"
+HISTORY_FILE = os.path.join(HISTORY_DIR, "translation_history.json")  # 使用路径拼接
 MAX_HISTORY = 20
 FILE_TYPES = [
     ('PDF 文档', '*.pdf'), 
     ('文本文档', '*.txt'),
     ('所有文件', '*.*')
 ]
-HISTORY_COLUMNS = ("时间", "输入摘要", "输出摘要", "模式")
+HISTORY_COLUMNS = ("时间", "输入摘要", "输出摘要", "模式") #历史记录没写完，有时间添加
 
 # 拼音风格管理类
 class ToneStyle:
@@ -125,7 +117,7 @@ def reverse_pinyin_translation(chinese_text, tone_style):
         raise ValueError(f"转换错误: {str(e)}")
 
 def read_pdf(file_path):
-    """读取PDF文件内容"""
+    """读取PDF文件内容,没有测试过"""
     content = []
     with pdfplumber.open(file_path) as pdf:
         for page in pdf.pages:
@@ -208,7 +200,7 @@ def load_history():
 class TranslationApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("阿弥诺斯语翻译器 V10.0")
+        self.root.title("阿弥诺斯语翻译器 V1.2")
         self.root.geometry("900x650")
         self.style_var = tk.StringVar(value=TONE_STYLES[0].name)  # 默认风格
         self.setup_ui()
@@ -340,4 +332,3 @@ if __name__ == "__main__":
         root.mainloop()
     finally:
         save_history()
->>>>>>> Stashed changes
