@@ -27,11 +27,13 @@ def tokenize(sentence):
     return list(jieba.cut(sentence))  # 中文分词
 
 # **获取名词冠词**
-def get_article(word, lang):
-    if lang in languages_dict and "noun" in languages_dict[lang]:
-        if word in languages_dict[lang]["noun"]:
-            gender = languages_dict[lang]["noun"][word].get("gender", "")
-            return {"m": "der", "f": "die", "n": "das"}.get(gender, "")
+def get_article(word, lang, target_lang):
+    # 只有在目标语言是通用语且源语言是中文时才添加冠词
+    if target_lang == "created" and lang == "zh":
+        if target_lang in languages_dict and "noun" in languages_dict[target_lang]:
+            if word in languages_dict[target_lang]["noun"]:
+                gender = languages_dict[target_lang]["noun"][word].get("gender", "")
+                return {"m": "der", "f": "die", "n": "das"}.get(gender, "")
     return ""
 
 # **识别单词类别**
@@ -41,24 +43,69 @@ def get_word_category(word, lang):
             return category
     return None
 
-# **优化动词变位** 要改
+# **优化动词变位**0311
 def conjugate_verb(verb, subject, tense):
-    # 过去式和将来式处理
-    if tense == "past":
-        return f"{verb}ed"
-    elif tense == "future":
-        return f"will {verb}"
+    # 获取动词词根，假设动词以 -ar, -er, -ir 结尾
+    if verb.endswith('ar'):
+        verb_root = verb[:-2]  # 去掉末尾的 'ar'
+        ending_type = '-ar'
+    elif verb.endswith('er'):
+        verb_root = verb[:-2]  # 去掉末尾的 'er'
+        ending_type = '-er'
+    elif verb.endswith('ir'):
+        verb_root = verb[:-2]  # 去掉末尾的 'ir'
+        ending_type = '-ir'
+    else:
+        # 如果动词不符合结尾规则，返回原动词
+        return verb
 
-    # 现在时，进行人称变位
-    if subject.lower() in ["he", "she", "it"]:
-        return f"{verb}s"
-    
-    return verb
+    # 根据时态和主语选择正确的变位
+    if tense == "present":
+        conjugation_table = {
+            "Jo": {"-ar": "o", "-er": "e", "-ir": "e"},
+            "Tu": {"-ar": "as", "-er": "as", "-ir": "as"},
+            "Er": {"-ar": "a", "-er": "a", "-ir": "a"},
+            "Sie": {"-ar": "a", "-er": "a", "-ir": "a"},
+            "Nou": {"-ar": "am", "-er": "em", "-ir": "em"},
+            "Vou": {"-ar": "ís", "-er": "ís", "-ir": "ís"},
+            "lou": {"-ar": "an", "-er": "an", "-ir": "an"}
+        }
+    elif tense == "past":
+        conjugation_table = {
+            "Jo": {"-ar": "é", "-er": "é", "-ir": "é"},
+            "Tu": {"-ar": "ast", "-er": "ast", "-ir": "ast"},
+            "Er": {"-ar": "ó", "-er": "ó", "-ir": "ó"},
+            "Sie": {"-ar": "ó", "-er": "ó", "-ir": "ó"},
+            "Nou": {"-ar": "ams", "-er": "ams", "-ir": "ams"},
+            "Vou": {"-ar": "ás", "-er": "ás", "-ir": "ás"},
+            "lou": {"-ar": "án", "-er": "én", "-ir": "én"}
+        }
+    elif tense == "future":
+        conjugation_table = {
+            "Jo": {"-ar": "é", "-er": "é", "-ir": "é"},
+            "Tu": {"-ar": "ás", "-er": "ás", "-ir": "ás"},
+            "Er": {"-ar": "á", "-er": "á", "-ir": "á"},
+            "Sie": {"-ar": "á", "-er": "á", "-ir": "á"},
+            "Nou": {"-ar": "ám", "-er": "ám", "-ir": "ám"},
+            "Vou": {"-ar": "áis", "-er": "áis", "-ir": "áis"},
+            "lou": {"-ar": "án", "-er": "án", "-ir": "án"}
+        }
+    else:
+        # 如果时态未知，直接返回原动词
+        return verb
+
+    # 获取主语对应的变位
+    if subject in conjugation_table:
+        ending = conjugation_table[subject][ending_type]
+        return f"{verb_root}{ending}"
+    else:
+        # 如果主语未知，直接返回原动词
+        return verb
 
 # **自动识别时态** 要改
 def detect_tense(words):
-    past_indicators = {"昨天", "以前", "曾经"}
-    future_indicators = {"明天", "将来", "以后"}
+    past_indicators = {"昨天", "以前", "曾经", "过去"}
+    future_indicators = {"明天", "将来", "以后", "未来"}
     
     if any(word in past_indicators for word in words):
         return "past"
@@ -66,18 +113,18 @@ def detect_tense(words):
         return "future"
     return "present"
 
-# **优化句子翻译** 要改
-def translate_sentence(sentence, lang):
+# **优化句子翻译**
+def translate_sentence(sentence, lang, target_lang):
     words = tokenize(sentence)
     tense = detect_tense(words)
     subjects, verbs, objects = [], [], []
     
     for word in words:
-        translated_word = translate(word, lang)
+        translated_word = translate(word, lang, target_lang)
         category = get_word_category(word, lang)
         
         if category == "noun":
-            article = get_article(word, lang)
+            article = get_article(word, lang, target_lang)
             translated_word = f"{article} {translated_word}".strip()
             if not subjects:
                 subjects.append(translated_word)  # 默认第一个名词是主语
@@ -135,6 +182,51 @@ def ask_for_translation(word, lang):
 
     tk.Button(add_window, text="保存", command=save_translation).pack()
 
+# **添加不规则动词**
+def add_irregular_verb():
+    def save_irregular_verb():
+        verb = entry_verb.get()
+        tense = tense_var.get()
+        subject = subject_var.get()
+        conjugation = entry_conjugation.get()
+        
+        if verb and tense and subject and conjugation:
+            if verb not in irregular_verbs:
+                irregular_verbs[verb] = {}
+            if tense not in irregular_verbs[verb]:
+                irregular_verbs[verb][tense] = {}
+            irregular_verbs[verb][tense][subject] = conjugation
+            
+            messagebox.showinfo("成功", f"已添加不规则动词：{verb} 在 {tense} 时态下，{subject} 的变位为 {conjugation}")
+            add_window.destroy()
+        else:
+            messagebox.showwarning("警告", "请填写所有字段！")
+    
+    add_window = tk.Toplevel(root)
+    add_window.title("添加不规则动词")
+    
+    tk.Label(add_window, text="动词：").grid(row=0, column=0)
+    entry_verb = tk.Entry(add_window)
+    entry_verb.grid(row=0, column=1)
+    
+    tk.Label(add_window, text="时态：").grid(row=1, column=0)
+    tense_var = tk.StringVar(value="present")
+    tense_options = ["present", "past", "future"]
+    tense_menu = tk.OptionMenu(add_window, tense_var, *tense_options)
+    tense_menu.grid(row=1, column=1)
+    
+    tk.Label(add_window, text="主语：").grid(row=2, column=0)
+    subject_var = tk.StringVar(value="Jo")
+    subject_options = ["Jo", "Tu", "Er", "Sie", "Nou", "Vou", "lou"]
+    subject_menu = tk.OptionMenu(add_window, subject_var, *subject_options)
+    subject_menu.grid(row=2, column=1)
+    
+    tk.Label(add_window, text="变位：").grid(row=3, column=0)
+    entry_conjugation = tk.Entry(add_window)
+    entry_conjugation.grid(row=3, column=1)
+    
+    tk.Button(add_window, text="保存", command=save_irregular_verb).grid(row=4, column=0, columnspan=2)
+
 # **优化GUI界面**
 root = tk.Tk()
 root.title("通用语翻译器")
@@ -161,6 +253,9 @@ def show_translation():
     result_text.insert(tk.END, translated_sentence)  # 显示新翻译
 
 tk.Button(root, text="翻译", font=("Arial", 14), command=show_translation).pack(pady=20)
+
+# **添加不规则动词按钮**
+tk.Button(root, text="添加不规则动词", command=add_irregular_verb).pack(pady=10)
 
 # **优化：加载词典**
 languages_dict = My_Dict.load_dict()
